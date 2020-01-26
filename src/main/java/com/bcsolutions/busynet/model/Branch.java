@@ -2,13 +2,14 @@ package com.bcsolutions.busynet.model;
 
 import java.util.List;
 
+import javax.persistence.CollectionTable;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
-import ch.qos.logback.core.net.server.Client;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -26,7 +27,8 @@ public class Branch extends BaseEntity {
 	@NotNull
 	private String name;
 	
-	@OneToMany(fetch = FetchType.LAZY)
+	@ElementCollection
+	@CollectionTable( name="address" )
 	private List<String> address;
 	
 	@NotNull

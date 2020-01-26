@@ -2,6 +2,8 @@ package com.bcsolutions.busynet.model;
 
 import java.util.List;
 
+import javax.persistence.CollectionTable;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
@@ -25,13 +27,14 @@ public class User extends BaseEntity{
 
 	private String email;
 	
-	@OneToMany( fetch = FetchType.LAZY )
+	@ElementCollection
+	@CollectionTable( name="phone" )
 	private List<String> phoneNumber;
 	
-//	@OneToMany( fetch = FetchType.LAZY )
+	@ElementCollection
+	@CollectionTable( name="address" )
 	private List<String> address;
 	
-//	@ManyToOne( fetch = FetchType.LAZY )
 	private AppConst.UserType userType;
 	
 }
